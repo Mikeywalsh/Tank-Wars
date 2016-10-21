@@ -3,7 +3,6 @@
 public class Entity : MonoBehaviour {
 
     public int maxHealth;
-
     public int health;
 
 	protected virtual void Start () {
