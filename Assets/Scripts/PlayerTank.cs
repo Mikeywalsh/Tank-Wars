@@ -50,11 +50,9 @@ public class PlayerTank : Tank {
         {
             FireLaser();
         }
-        if(Input.GetMouseButtonUp(1))
+        if(!Input.GetMouseButton(1))
         {
-            if (currentLaser != null)
-                Destroy(currentLaser);
-            laserTarget = null;
+            StopFiringLaser();
         }
 
         base.FixedUpdate();

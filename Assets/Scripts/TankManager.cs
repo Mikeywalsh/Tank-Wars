@@ -3,7 +3,6 @@ using System.Collections;
 
 public class TankManager : MonoBehaviour {
 
-
     private GameObject tank;
     private GameObject healthBar;
     private float deathTime;

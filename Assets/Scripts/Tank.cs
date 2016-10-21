@@ -137,6 +137,14 @@ public abstract class Tank : Entity {
         }
     }
 
+    protected void StopFiringLaser()
+    {
+        if (currentLaser != null)
+            Destroy(currentLaser);
+        laserTarget = null;
+    }
+
+
     protected override void DestroyEntity()
     {
         //Remove this tank from the static list of active tanks and create an explosion at the tanks position
@@ -146,6 +154,7 @@ public abstract class Tank : Entity {
         explosion.GetComponent<SpriteRenderer>().color = new Color32(255, 195, 0, 255);
 
         //Destroy the tank for now, and prepare for respawn
+        StopFiringLaser();
         onConveyor = false;
         transform.parent.GetComponent<TankManager>().DestroyTank();
     }
