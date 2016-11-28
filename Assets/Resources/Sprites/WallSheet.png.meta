@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c0d92b1d392a9614d9e11d220886ad8c
-timeCreated: 1471221323
+guid: 7643169ba54b9274b9171f2ccdba4cd9
+timeCreated: 1480123214
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -100,11 +100,14 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 64
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: WallSheet_0
+    - serializedVersion: 2
+      name: WallSheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -114,12 +117,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_1
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_1
       rect:
         serializedVersion: 2
         x: 74
@@ -129,12 +130,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_2
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_2
       rect:
         serializedVersion: 2
         x: 148
@@ -144,12 +143,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_3
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_3
       rect:
         serializedVersion: 2
         x: 222
@@ -159,12 +156,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_4
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_4
       rect:
         serializedVersion: 2
         x: 296
@@ -174,12 +169,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_5
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_5
       rect:
         serializedVersion: 2
         x: 370
@@ -189,12 +182,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_6
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_6
       rect:
         serializedVersion: 2
         x: 444
@@ -204,12 +195,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_7
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_7
       rect:
         serializedVersion: 2
         x: 518
@@ -219,12 +208,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_8
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_8
       rect:
         serializedVersion: 2
         x: 592
@@ -234,12 +221,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_9
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_9
       rect:
         serializedVersion: 2
         x: 0
@@ -249,12 +234,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_10
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_10
       rect:
         serializedVersion: 2
         x: 74
@@ -264,12 +247,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_11
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_11
       rect:
         serializedVersion: 2
         x: 148
@@ -279,12 +260,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_12
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_12
       rect:
         serializedVersion: 2
         x: 222
@@ -294,12 +273,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_13
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_13
       rect:
         serializedVersion: 2
         x: 296
@@ -309,12 +286,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_14
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_14
       rect:
         serializedVersion: 2
         x: 370
@@ -324,12 +299,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_15
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_15
       rect:
         serializedVersion: 2
         x: 444
@@ -339,12 +312,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_16
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_16
       rect:
         serializedVersion: 2
         x: 518
@@ -354,12 +325,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_17
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_17
       rect:
         serializedVersion: 2
         x: 592
@@ -369,12 +338,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_18
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_18
       rect:
         serializedVersion: 2
         x: 0
@@ -384,12 +351,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_19
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_19
       rect:
         serializedVersion: 2
         x: 74
@@ -399,12 +364,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_20
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_20
       rect:
         serializedVersion: 2
         x: 148
@@ -414,12 +377,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_21
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_21
       rect:
         serializedVersion: 2
         x: 222
@@ -429,12 +390,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_22
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_22
       rect:
         serializedVersion: 2
         x: 296
@@ -444,12 +403,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_23
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_23
       rect:
         serializedVersion: 2
         x: 370
@@ -459,12 +416,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_24
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_24
       rect:
         serializedVersion: 2
         x: 444
@@ -474,12 +429,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_25
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_25
       rect:
         serializedVersion: 2
         x: 518
@@ -489,12 +442,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_26
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_26
       rect:
         serializedVersion: 2
         x: 592
@@ -504,13 +455,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -28, y: 28}
-        - {x: -28, y: -26}
-        - {x: -26, y: -28}
-        - {x: 28, y: -28}
-        - {x: 28, y: 28}
-    - name: WallSheet_27
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_27
       rect:
         serializedVersion: 2
         x: 0
@@ -520,12 +468,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_28
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_28
       rect:
         serializedVersion: 2
         x: 74
@@ -535,12 +481,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_29
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_29
       rect:
         serializedVersion: 2
         x: 148
@@ -550,12 +494,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_30
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_30
       rect:
         serializedVersion: 2
         x: 222
@@ -565,12 +507,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_31
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_31
       rect:
         serializedVersion: 2
         x: 296
@@ -580,12 +520,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_32
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_32
       rect:
         serializedVersion: 2
         x: 370
@@ -595,12 +533,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_33
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_33
       rect:
         serializedVersion: 2
         x: 444
@@ -610,12 +546,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_34
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_34
       rect:
         serializedVersion: 2
         x: 518
@@ -625,15 +559,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -29}
-        - {x: -27, y: -32}
-        - {x: 25, y: -32}
-        - {x: 32, y: -21}
-        - {x: 32, y: 20}
-        - {x: 21, y: 32}
-    - name: WallSheet_35
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_35
       rect:
         serializedVersion: 2
         x: 592
@@ -643,16 +572,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -15, y: 24}
-        - {x: -24, y: 19}
-        - {x: -24, y: -12}
-        - {x: -12, y: -24}
-        - {x: 20, y: -24}
-        - {x: 24, y: -11}
-        - {x: 24, y: 18}
-        - {x: 19, y: 24}
-    - name: WallSheet_36
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_36
       rect:
         serializedVersion: 2
         x: 0
@@ -662,12 +585,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_37
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_37
       rect:
         serializedVersion: 2
         x: 74
@@ -677,12 +598,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_38
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_38
       rect:
         serializedVersion: 2
         x: 148
@@ -692,12 +611,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_39
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_39
       rect:
         serializedVersion: 2
         x: 222
@@ -707,12 +624,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_40
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_40
       rect:
         serializedVersion: 2
         x: 296
@@ -722,12 +637,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_41
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_41
       rect:
         serializedVersion: 2
         x: 370
@@ -737,12 +650,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_42
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_42
       rect:
         serializedVersion: 2
         x: 444
@@ -752,12 +663,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_43
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_43
       rect:
         serializedVersion: 2
         x: 518
@@ -767,12 +676,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 2, y: -32}
-        - {x: 2, y: 32}
-        - {x: -32, y: 32}
-        - {x: -32, y: -32}
-    - name: WallSheet_44
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_44
       rect:
         serializedVersion: 2
         x: 592
@@ -782,12 +689,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -2}
-        - {x: 32, y: -2}
-        - {x: 32, y: 32}
-    - name: WallSheet_45
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_45
       rect:
         serializedVersion: 2
         x: 0
@@ -797,12 +702,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_46
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_46
       rect:
         serializedVersion: 2
         x: 74
@@ -812,12 +715,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_47
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_47
       rect:
         serializedVersion: 2
         x: 148
@@ -827,12 +728,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_48
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_48
       rect:
         serializedVersion: 2
         x: 222
@@ -842,12 +741,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_49
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_49
       rect:
         serializedVersion: 2
         x: 296
@@ -857,12 +754,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_50
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_50
       rect:
         serializedVersion: 2
         x: 370
@@ -872,12 +767,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_51
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_51
       rect:
         serializedVersion: 2
         x: 444
@@ -887,12 +780,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: 32}
-        - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
-    - name: WallSheet_52
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_52
       rect:
         serializedVersion: 2
         x: 518
@@ -902,12 +793,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -32, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 2}
-        - {x: -32, y: 2}
-    - name: WallSheet_53
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: WallSheet_53
       rect:
         serializedVersion: 2
         x: 592
@@ -917,11 +806,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -2, y: 32}
-        - {x: -2, y: -32}
-        - {x: 32, y: -32}
-        - {x: 32, y: 32}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 

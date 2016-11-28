@@ -132,7 +132,9 @@ public abstract class Tank : Entity {
             currentLaser.transform.position = body.transform.position + (currentLaser.transform.up * (laserLength / 4));
             currentLaser.transform.localScale = new Vector3(currentLaser.transform.localScale.x, laserLength, 1);
 
-            if(hit.collider.tag != "Wall")
+            if (hit.collider.tag == "Wall")
+                laserTarget = null;
+            else
                 laserTarget = hit.collider.gameObject;
         }
     }
