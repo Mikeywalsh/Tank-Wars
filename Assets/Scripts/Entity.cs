@@ -5,9 +5,18 @@ public class Entity : MonoBehaviour {
     public int maxHealth;
     public int health;
 
+    private static Vector2 mapStart = new Vector2(-9.5f, -7.5f);
+    private static Vector2 mapEnd = new Vector2(9.5f, 7.5f);
+
 	protected virtual void Start () {
         health = MaxHealth;
 	}	
+
+    protected virtual void FixedUpdate()
+    {
+        if (transform.position.x < mapStart.x || transform.position.y < mapStart.y || transform.position.x > mapEnd.x || transform.position.y > mapEnd.y)
+            DestroyEntity();
+    }
 
     public void TakeDamage(int amount)
     {

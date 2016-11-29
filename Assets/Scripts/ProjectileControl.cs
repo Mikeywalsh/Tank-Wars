@@ -21,7 +21,9 @@ sealed public class ProjectileControl : Entity {
         transform.GetChild(0).GetComponent<SpriteRenderer>().color = shellColor;
 	}
 	
-	void FixedUpdate () {
+	protected override void FixedUpdate () {
+        base.FixedUpdate();
+
         if(Time.time - timeCreated > 1.5f)
         {
             DestroyEntity();

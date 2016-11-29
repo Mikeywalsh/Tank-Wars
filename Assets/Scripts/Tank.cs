@@ -48,8 +48,10 @@ public abstract class Tank : Entity {
         fireCooldown -= Time.deltaTime;
     }
 
-    protected virtual void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
+
         //Move the tank
         if (direction != Vector2.zero)
         {

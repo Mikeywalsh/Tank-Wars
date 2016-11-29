@@ -46,14 +46,16 @@ public class CameraControl : MonoBehaviour {
 
         //Loosely follow the midpoint of all active tanks
         Vector3 pos = transform.position;
-        if (pos.x - followTarget.x <= -1.5f)
-            pos.x = followTarget.x - 1.5f;
-        if (pos.x - followTarget.x >= 1.5f)
-            pos.x = followTarget.x + 1.5f;
-        if (pos.y - followTarget.y <= -1.5f)
-            pos.y = followTarget.y - 1.5f;
-        if (pos.y - followTarget.y >= 1.5f)
-            pos.y = followTarget.y + 1.5f;
+        if (pos.x - followTarget.x <= -1)
+            pos.x = followTarget.x - 1;
+        if (pos.x - followTarget.x >= 1)
+            pos.x = followTarget.x + 1;
+        if (pos.y - followTarget.y <= -1)
+            pos.y = followTarget.y - 1;
+        if (pos.y - followTarget.y >= 1)
+            pos.y = followTarget.y + 1;
+
+        //pos = followTarget;
 
         //Debug.Log("---");
         //Debug.Log(mapMinX.ToString());
