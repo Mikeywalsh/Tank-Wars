@@ -12,8 +12,10 @@ public class InteractableItem : Entity {
         body = GetComponent<Rigidbody2D>();
     }
 	
-	protected void FixedUpdate ()
+	protected override void FixedUpdate ()
     {
+        base.FixedUpdate();
+
         if (direction != Vector2.zero)
         {
             body.MovePosition(body.position + (direction.normalized * 1.15f * Time.deltaTime));
