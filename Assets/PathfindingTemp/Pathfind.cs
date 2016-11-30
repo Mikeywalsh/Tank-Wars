@@ -34,7 +34,7 @@ public class Pathfind : MonoBehaviour {
         }
 
         path = FindPath();
-        Debug.Log("OH MY" + path.Count.ToString());
+        Debug.Log("Optimal path: " + path.Count.ToString() + " moves!");
     }
 
     private List<Node> GetAdjacentWalkableNodes(Node fromNode)
@@ -46,8 +46,6 @@ public class Pathfind : MonoBehaviour {
         {
             int x = (int)index.x;
             int y = (int)index.y;
-            //Debug.Log(x.ToString());
-            //Debug.Log(y.ToString());
 
             //Stay within level
             if (x < 0 || x >= NodeMap.GetLength(0) || y < 0 || y >= NodeMap.GetLength(1))
@@ -65,7 +63,7 @@ public class Pathfind : MonoBehaviour {
             //Already-open nodes are only added to the list if their G-value is lower via this route
             if(node.State == Node.NodeState.Open)
             {
-                float tempG = fromNode.G + fromNode.GetTraversalCost(fromNode, node);
+                float tempG = fromNode.G + fromNode.GetTraversalCost(node);
                 if (tempG < node.G)
                 {
                     node.SetG(tempG);
@@ -77,7 +75,7 @@ public class Pathfind : MonoBehaviour {
             else
             {
                 //If untested, set parent and flag as open and set G and F values
-                float tempG = fromNode.G + fromNode.GetTraversalCost(fromNode, node);
+                float tempG = fromNode.G + fromNode.GetTraversalCost(node);
                 node.SetG(tempG);
                 node.SetF();
                 node.ParentNode = fromNode;
@@ -89,28 +87,44 @@ public class Pathfind : MonoBehaviour {
         return walkableNodes;
     }
 
+    private Node LowestF()
+    {
+        float min = float.MaxValue;
+        Node minNode = NodeMap[0, 0];
+
+        foreach(Node n in NodeMap)
+        {
+            if (n.State != Node.NodeState.Closed && n.F != 0 && n.F < min)
+            {
+                min = n.F;
+                minNode = n;
+            }
+        }
+        return minNode;
+    }
+
     private bool Search(Node currentNode)
     {
         currentNode.State = Node.NodeState.Closed;
 
         List<Node> adjacentNodes = GetAdjacentWalkableNodes(currentNode);
-        adjacentNodes.Sort((node1, node2) => node1.F.CompareTo(node2.F));
+        //adjacentNodes.Sort((node1, node2) => node1.F.CompareTo(node2.F));
 
-        foreach (Node nextNode in adjacentNodes)
-        {
-            Debug.Log(nextNode.Position.ToString());
-            if (nextNode.Index == EndIndex)
+        //foreach (Node nextNode in adjacentNodes)
+        //{
+            //Debug.Log(currentNode.Position.ToString());
+            if (currentNode.Index == EndIndex)
             {
                 Debug.Log("JESUS FUCK");
-                endNode = nextNode;
+                endNode = currentNode;
                 return true;
             }
             else
             {
-                if (Search(nextNode))
+                if (Search(LowestF()))
                     return true;
             }
-        }
+        //}
         return false;
     }
 
@@ -146,6 +160,28 @@ public class Pathfind : MonoBehaviour {
         adjacentIndexs.Add(index + new Vector2(-1, 0));
         adjacentIndexs.Add(index + new Vector2(0, -1));
 
+        //temp corner cutting 
+        if (index.x + 1 < NodeMap.GetLength(0) && index.y + 1 < NodeMap.GetLength(1))
+        {
+            if(NodeMap[(int)(index.x + 1), (int)(index.y)].Walkable && NodeMap[(int)(index.x), (int)(index.y + 1)].Walkable)
+                adjacentIndexs.Add(index + new Vector2(1, 1));
+        }
+        if (index.x - 1 >= 0 && index.y + 1 < NodeMap.GetLength(1))
+        {
+            if (NodeMap[(int)(index.x - 1), (int)(index.y)].Walkable && NodeMap[(int)(index.x), (int)(index.y + 1)].Walkable)
+                adjacentIndexs.Add(index + new Vector2(-1, 1));
+        }
+        if (index.x + 1 < NodeMap.GetLength(0) && index.y - 1 >= 0)
+        {
+            if (NodeMap[(int)(index.x + 1), (int)(index.y)].Walkable && NodeMap[(int)(index.x), (int)(index.y - 1)].Walkable)
+                adjacentIndexs.Add(index + new Vector2(1, -1));
+        }
+        if (index.x - 1 >= 0 && index.y - 1 >= 0)
+        {
+            if (NodeMap[(int)(index.x - 1), (int)(index.y)].Walkable && NodeMap[(int)(index.x), (int)(index.y - 1)].Walkable)
+                adjacentIndexs.Add(index + new Vector2(-1, -1));
+        }
+
         return adjacentIndexs;
     }
 
@@ -164,7 +200,20 @@ public class Pathfind : MonoBehaviour {
                     Gizmos.DrawLine(path[i], path[i + 1]);
                 }
                 //Gizmos.color = Map[x, y] ? Color.green : Color.red;
-                //Gizmos.DrawCube(new Vector3(MapStart.x + x, 0.125f + (Map[x, y] ? 0 : 1), MapStart.z - y), new Vector3(1, 0.25f, 1));
+                
+                switch (NodeMap[x, y].State)
+                {
+                    case Node.NodeState.Open:
+                        Gizmos.color = Color.magenta;
+                        break;
+                    case Node.NodeState.Closed:
+                        Gizmos.color = Color.green;
+                        break;
+                    case Node.NodeState.Untested:
+                        Gizmos.color = Color.red;
+                        break;
+                }
+                Gizmos.DrawCube(new Vector3(MapStart.x + x, 0.125f + (Map[x, y] ? 0 : 1), MapStart.z - y), new Vector3(1, 0.25f, 1));
             }
         }
 

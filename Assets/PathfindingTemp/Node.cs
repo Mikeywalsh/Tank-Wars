@@ -42,9 +42,9 @@ public class Node{
         F = G + H;
     }
 
-    public float GetTraversalCost(Node from, Node to)
+    public float GetTraversalCost(Node to)
     {
-        return (to.Position - from.Position).magnitude;
+        return (to.Position - Position).magnitude;
     }
 
     public enum NodeState

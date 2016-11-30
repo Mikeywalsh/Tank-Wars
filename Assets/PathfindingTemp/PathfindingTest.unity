@@ -395,8 +395,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowInEditor: 0
   MapStart: {x: -3.5, y: 0.5, z: 3.5}
-  StartIndex: {x: 0, y: 0}
-  EndIndex: {x: 3, y: 0}
+  StartIndex: {x: 2, y: 0}
+  EndIndex: {x: 4, y: 0}
 --- !u!4 &1192278086
 Transform:
   m_ObjectHideFlags: 0
