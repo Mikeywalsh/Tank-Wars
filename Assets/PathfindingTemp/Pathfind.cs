@@ -5,8 +5,8 @@ public class Pathfind : MonoBehaviour {
 
     public bool ShowInEditor;
     public Vector3 MapStart;
-    public Vector3 StartPos;
-    public Vector3 EndPos;
+    public Vector2 StartIndex;
+    public Vector2 EndIndex;
 
     private Node endNode;
     private bool[,] Map = new bool[,] { { true, true, true, true, true, true, true, true }, { true, true, true, true, true, false, true, true }, { true, true, true, true, true, false, true, true }, { false, false, false, false, false, false, true, true }, { true, true, true, true, true, false, true, true }, { true, true, true, true, true, false, true, true }, { true, true, true, true, true, true, true, true }, { true, true, true, true, true, false, true, true } };
@@ -21,9 +21,15 @@ public class Pathfind : MonoBehaviour {
         {
             for(int x = 0; x < Map.GetLength(0); x++)
             {
-                NodeMap[x, y] = new Node(new Vector3(x, MapStart.y, y), Map[x,y]);
+                NodeMap[x, y] = new Node(new Vector3(MapStart.x + x, MapStart.y, MapStart.z - y),new Vector2(x,y), Map[x,y]);
+            }
+        }
 
-                NodeMap[x, y].SetH(EndPos, MapStart);
+        for (int y = 0; y < Map.GetLength(1); y++)
+        {
+            for (int x = 0; x < Map.GetLength(0); x++)
+            {
+                NodeMap[x, y].SetH(NodeMap[(int)EndIndex.x, (int)EndIndex.y]);
             }
         }
 
@@ -34,12 +40,12 @@ public class Pathfind : MonoBehaviour {
     private List<Node> GetAdjacentWalkableNodes(Node fromNode)
     {
         List<Node> walkableNodes = new List<Node>();
-        List<Vector3> adjacentLocations = GetAdjacentLocations(fromNode.Position);
+        List<Vector2> adjacentIndexs = GetAdjacentIndexs(fromNode.Index);
 
-        foreach(Vector3 pos in adjacentLocations)
+        foreach(Vector2 index in adjacentIndexs)
         {
-            int x = Mathf.RoundToInt(pos.x);
-            int y = Mathf.RoundToInt(pos.z);
+            int x = (int)index.x;
+            int y = (int)index.y;
             //Debug.Log(x.ToString());
             //Debug.Log(y.ToString());
 
@@ -93,7 +99,7 @@ public class Pathfind : MonoBehaviour {
         foreach (Node nextNode in adjacentNodes)
         {
             Debug.Log(nextNode.Position.ToString());
-            if (nextNode.Position == new Vector3(4,0.5f,1))
+            if (nextNode.Index == EndIndex)
             {
                 Debug.Log("JESUS FUCK");
                 endNode = nextNode;
@@ -111,18 +117,20 @@ public class Pathfind : MonoBehaviour {
     public List<Vector3> FindPath()
     {
         List<Vector3> path = new List<Vector3>();
+        NodeMap[(int)StartIndex.x, (int)StartIndex.y].SetG(0);
+        NodeMap[(int)StartIndex.x, (int)StartIndex.y].SetF();
         //Debug.Log(Mathf.RoundToInt(StartPos.x - MapStart.x).ToString());
         //Debug.Log(Mathf.RoundToInt(StartPos.z - MapStart.z).ToString());
         //bool success = Search(NodeMap[Mathf.RoundToInt(StartPos.x - MapStart.x), -1 *Mathf.RoundToInt(StartPos.z - MapStart.z)]);
-        bool success = Search(NodeMap[1,1]);
+        bool success = Search(NodeMap[(int)StartIndex.x, (int)StartIndex.y]);
         if (success)
         {
             Node node = endNode;
             while (node.ParentNode != null)
             {
-                Vector3 temp = node.Position;
-                temp.z *= -1;
-                path.Add(temp);
+                //Vector3 temp = node.Position;
+                //temp.z *= -1;
+                path.Add(node.Position);
                 node = node.ParentNode;
             }
             path.Reverse();
@@ -130,19 +138,15 @@ public class Pathfind : MonoBehaviour {
         return path;
     }
 
-    private List<Vector3> GetAdjacentLocations(Vector3 pos)
+    private List<Vector2> GetAdjacentIndexs(Vector2 index)
     {
-        List<Vector3> adjacentLocations = new List<Vector3>();
-        adjacentLocations.Add(pos + new Vector3(1, 0, 0));
-        adjacentLocations.Add(pos + new Vector3(0, 0, 1));
-        adjacentLocations.Add(pos + new Vector3(-1, 0, 0));
-        adjacentLocations.Add(pos + new Vector3(0, 0, -1));
+        List<Vector2> adjacentIndexs = new List<Vector2>();
+        adjacentIndexs.Add(index + new Vector2(1, 0));
+        adjacentIndexs.Add(index + new Vector2(0, 1));
+        adjacentIndexs.Add(index + new Vector2(-1, 0));
+        adjacentIndexs.Add(index + new Vector2(0, -1));
 
-        adjacentLocations.Add(pos + new Vector3(-1, 0, -1));
-        adjacentLocations.Add(pos + new Vector3(1, 0, -1));
-        adjacentLocations.Add(pos + new Vector3(-1, 0, -1));
-        adjacentLocations.Add(pos + new Vector3(1, 0, 1));
-        return adjacentLocations;
+        return adjacentIndexs;
     }
 
     void OnDrawGizmos()
