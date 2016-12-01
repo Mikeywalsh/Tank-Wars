@@ -11,7 +11,7 @@ public class Pathfind : MonoBehaviour {
     private Node endNode;
     private bool[,] Map = new bool[,] { { true, true, true, true, true, true, true, true }, { true, true, true, true, true, false, true, true }, { true, true, true, true, true, false, true, true }, { false, false, false, false, false, false, true, true }, { true, true, true, true, true, false, true, true }, { true, true, true, true, true, false, true, true }, { true, true, true, true, true, true, true, true }, { true, true, true, true, true, false, true, true } };
     private Node[,] NodeMap;
-    private List<Vector3> path = new List<Vector3>();
+    public List<Vector3> path = new List<Vector3>();
 
     void Start()
     {
@@ -195,6 +195,8 @@ public class Pathfind : MonoBehaviour {
             for(int x = 0; x < Map.GetLength(0); x++)
             {
                 Gizmos.color = Color.magenta;
+                if (path.Count > 0)
+                    Gizmos.DrawLine(new Vector3(MapStart.x + StartIndex.x, 0.5f, MapStart.z + StartIndex.y), path[0]);
                 for (int i = 0; i < path.Count - 1; i++)
                 {
                     Gizmos.DrawLine(path[i], path[i + 1]);

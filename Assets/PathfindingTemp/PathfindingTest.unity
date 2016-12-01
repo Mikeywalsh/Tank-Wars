@@ -395,8 +395,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowInEditor: 0
   MapStart: {x: -3.5, y: 0.5, z: 3.5}
-  StartIndex: {x: 2, y: 0}
+  StartIndex: {x: 1, y: 0}
   EndIndex: {x: 4, y: 0}
+  path: []
 --- !u!4 &1192278086
 Transform:
   m_ObjectHideFlags: 0
@@ -1249,7 +1250,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1929233317}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 2.5}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 3.5}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1315,6 +1316,7 @@ GameObject:
   - 33: {fileID: 2126472071}
   - 136: {fileID: 2126472070}
   - 23: {fileID: 2126472069}
+  - 114: {fileID: 2126472072}
   m_Layer: 0
   m_Name: AI
   m_TagString: Untagged
@@ -1329,7 +1331,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2126472067}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 0.5, z: 2.5}
+  m_LocalPosition: {x: -2.5, y: 0.5, z: 3.5}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1384,6 +1386,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2126472067}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2126472072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2126472067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9667fcc19c0d62448a70589995240728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2145330708
 GameObject:
   m_ObjectHideFlags: 0
