@@ -5,18 +5,24 @@ public class Pathfind : MonoBehaviour {
 
     public bool ShowInEditor;
     public Vector3 MapStart;
+    public List<Vector3> path;
 
     public Point StartIndex;
     public Point EndIndex;
 
     private bool[,] Map = new bool[,] { { true, true, true, true, true, true, true, true }, { true, true, true, true, true, false, true, true }, { true, true, true, true, true, false, true, true }, { false, false, false, false, false, false, true, true }, { true, true, true, true, true, false, true, true }, { true, true, true, true, true, false, true, true }, { true, true, true, true, true, true, true, true }, { true, true, true, true, true, false, true, true } };
     private Node[,] NodeMap;
-    public List<Vector3> path = new List<Vector3>();
 
-    private List<Node> OpenNodes = new List<Node>();
+    private List<Node> OpenNodes;
 
     void Start()
     {
+        path = new List<Vector3>();
+        OpenNodes = new List<Node>();
+
+        if (StartIndex == EndIndex)
+            return;
+
         NodeMap = new Node[Map.GetLength(0), Map.GetLength(1)];
 
         for (int y = 0; y < Map.GetLength(1); y++)
@@ -28,17 +34,13 @@ public class Pathfind : MonoBehaviour {
         }
 
         foreach (Node node in NodeMap)
-        {
             node.SetH(NodeMap[EndIndex.X, EndIndex.Y]);
-        }
 
         path = FindPath();
-        Debug.Log("Optimal path: " + path.Count.ToString() + " moves!");
     }
 
     private void Discover(Node fromNode)
     {
-        List<Node> walkableNodes = new List<Node>();
         List<Point> adjacentIndexs = GetAdjacentIndexs(fromNode.Index);
 
         foreach(Point index in adjacentIndexs)
@@ -68,48 +70,40 @@ public class Pathfind : MonoBehaviour {
                     node.SetG(tempG);
                     node.SetF();
                     node.ParentNode = fromNode;
-                    walkableNodes.Add(node);
                 }
             }
             else
             {
-                //If untested, set parent and flag as open and set G and F values
+                //If untested, set parent, flag as open and set G and F values
                 float tempG = fromNode.G + fromNode.GetTraversalCost(node);
                 node.SetG(tempG);
                 node.SetF();
                 node.ParentNode = fromNode;
                 node.State = Node.NodeState.Open;
-                walkableNodes.Add(node);
 
                 if (!OpenNodes.Contains(node))
                     OpenNodes.Add(node);
-
-
             }
         }
     }
 
-    private bool Search(Node currentNode)
+    private bool Search()
     {
-        currentNode.State = Node.NodeState.Closed;
-        OpenNodes.RemoveAt(0);
-        Discover(currentNode);
-        Debug.Log(OpenNodes.Count.ToString());
-        OpenNodes.Sort((node1, node2) => node1.F.CompareTo(node2.F));
+        while(OpenNodes.Count != 0)
+        {
+            Node currentNode = OpenNodes[0];
+            OpenNodes.RemoveAt(0);
 
-        //foreach (Node nextNode in adjacentNodes)
-        //{
-            //Debug.Log(currentNode.Position.ToString());
+            currentNode.State = Node.NodeState.Closed;
+
+            Discover(currentNode);
+            OpenNodes.Sort((node1, node2) => node1.F.CompareTo(node2.F));
+
             if (currentNode.Index == EndIndex)
-            {
                 return true;
-            }
-            else
-            {
-                if (Search(OpenNodes[0]))
-                    return true;
-            }
-        //}
+
+            Debug.Log(OpenNodes.Count.ToString());
+        }
         return false;
     }
 
@@ -123,10 +117,7 @@ public class Pathfind : MonoBehaviour {
         NodeMap[StartIndex.X, StartIndex.Y].State = Node.NodeState.Open;
         OpenNodes.Add(NodeMap[StartIndex.X, StartIndex.Y]);
 
-        //Debug.Log(Mathf.RoundToInt(StartPos.x - MapStart.x).ToString());
-        //Debug.Log(Mathf.RoundToInt(StartPos.z - MapStart.z).ToString());
-        //bool success = Search(NodeMap[Mathf.RoundToInt(StartPos.x - MapStart.x), -1 *Mathf.RoundToInt(StartPos.z - MapStart.z)]);
-        bool success = Search(NodeMap[StartIndex.X, StartIndex.Y]);
+        bool success = Search();
         if (success)
         {
             Node node = NodeMap[EndIndex.X, EndIndex.Y];
@@ -184,12 +175,11 @@ public class Pathfind : MonoBehaviour {
             {
                 Gizmos.color = Color.magenta;
                 if (path.Count > 0)
-                    Gizmos.DrawLine(transform.position, path[0]);
+                    Gizmos.DrawLine(GameObject.Find("AI").transform.position, path[0]);
                 for (int i = 0; i < path.Count - 1; i++)
                 {
                     Gizmos.DrawLine(path[i], path[i + 1]);
                 }
-                //Gizmos.color = Map[x, y] ? Color.green : Color.red;
 
                 switch (NodeMap[x, y].State)
                 {

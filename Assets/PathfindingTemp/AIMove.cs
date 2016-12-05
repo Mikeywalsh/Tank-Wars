@@ -16,7 +16,7 @@ public class AIMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    while(!pathFound)
+	    if(!pathFound)
         {
             if(GameObject.Find("Controller").GetComponent<Pathfind>().path.Count > 0)
             {
@@ -24,6 +24,7 @@ public class AIMove : MonoBehaviour {
                 pathFound = true;
                 stop = false;
             }
+            return;
         }
 
         if (stop)
