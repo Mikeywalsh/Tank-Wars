@@ -69,6 +69,15 @@ public class Node{
         F = G + H;
     }
 
+    public void Reset()
+    {
+        G = 0.0f;
+        H = 0.0f;
+        F = 0.0F;
+        State = NodeState.Untested;
+        ParentNode = null;
+    }
+
     /// <summary>
     /// Get the travel cost between this node instance and the provided node
     /// </summary>
