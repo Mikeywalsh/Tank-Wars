@@ -4,7 +4,7 @@ using System.Collections;
 public class TankManager : MonoBehaviour {
 
     private GameObject tank;
-    private GameObject healthBar;
+    private GameObject frame;
     private float deathTime;
     private float SpawnTime;
     private bool dead;
@@ -12,14 +12,14 @@ public class TankManager : MonoBehaviour {
     void Start()
     {
         tank = transform.FindChild("Tank").gameObject;
-        healthBar = transform.FindChild("Health Bar Frame").gameObject;
+        frame = transform.FindChild("Frame").gameObject;
 
         //StartSpawn();
     }
 
     void FixedUpdate()
     {
-        healthBar.transform.position = tank.transform.position + new Vector3(0, 0.95f, 0);
+        frame.transform.position = tank.transform.position + new Vector3(0, 0.95f, 0);
 
         if (dead && Time.time - deathTime > LevelController.DeathDuration)
             Spawn();
@@ -30,13 +30,13 @@ public class TankManager : MonoBehaviour {
 
     public void UpdateHealthBar(int maxHealth, int health, int damage)
     {
-        healthBar.GetComponent<HealthBarController>().UpdateHealth(maxHealth, health, damage);
+        frame.GetComponent<FrameController>().UpdateHealth(maxHealth, health, damage);
     }
 
     public void DestroyTank()
     {
         tank.SetActive(false);
-        healthBar.SetActive(false);
+        frame.SetActive(false);
         deathTime = Time.time;
         dead = true;
     }
@@ -46,6 +46,10 @@ public class TankManager : MonoBehaviour {
         //Enable this tank and set its location to the most optimal spawn location
         tank.SetActive(true);
         tank.transform.position = LevelController.OptimalSpawnLocation();
+
+        //Enable the tank frame but disable the healthbar, so only the name is displayed
+        frame.gameObject.SetActive(true);
+        transform.Find("Frame/Health Bar").gameObject.SetActive(false);
 
         //Make this tank transparent, heal it to max health and disable firing and projectile collisions
         tank.GetComponent<Tank>().MakeTransparent();
@@ -70,10 +74,10 @@ public class TankManager : MonoBehaviour {
         tank.GetComponent<Tank>().canFire = true;
         tank.gameObject.tag = "Tank";
         tank.layer = 0; //Default
-        
-        //Enable the healthbar and reset it to be full
-        healthBar.gameObject.SetActive(true);
-        healthBar.GetComponent<HealthBarController>().ResetHealth();
+
+        //Enable the health bar and reset it to be full
+        transform.Find("Frame/Health Bar").gameObject.SetActive(true);
+        frame.GetComponent<FrameController>().ResetHealth();
         tank.GetComponent<Tank>().spawning = false;
     }
 }

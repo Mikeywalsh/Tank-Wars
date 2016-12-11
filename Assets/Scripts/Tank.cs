@@ -113,7 +113,7 @@ public abstract class Tank : Entity {
         if(!canFire)
             return;
 
-        GameObject missile = Instantiate(Resources.Load("Shell"), transform.position + transform.Find("Tank Cannon").up * 0.5f, Quaternion.identity) as GameObject;
+        GameObject missile = Instantiate(Resources.Load("Shell"), transform.position + transform.Find("Tank Cannon").up * 0.4f, Quaternion.identity) as GameObject;
         missile.GetComponent<ProjectileControl>().direction = transform.Find("Tank Cannon").up;
         missile.GetComponent<ProjectileControl>().owner = gameObject;
         missile.GetComponent<ProjectileControl>().shellColor = color;
