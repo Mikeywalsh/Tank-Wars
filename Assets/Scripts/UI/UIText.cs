@@ -26,13 +26,18 @@ public class UIText : MonoBehaviour
     /// The text to display on the outline text objects
     /// </summary>
     private string outlineString;
-
+    /// <summary>
+    /// Used to store the index of the mainString where color tags begin. This saves performance when adjusting the alpha values when fading
+    /// </summary>
+    private List<int> colorStartIndices;
     private List<Text> outline;
     private Text mainText;
 
-    void Start()
+    private void Start()
     {
         outline = new List<Text>();
+        colorStartIndices = new List<int>();
+
         for (int i = 0; i < transform.childCount - 1; i++)
         {
             outline.Add(transform.GetChild(i).GetComponent<Text>());
@@ -56,11 +61,48 @@ public class UIText : MonoBehaviour
                 outlineString = string.Format(DisplayText, t1.PlayerName);
                 mainString = string.Format(DisplayText, StringToColorText(t1.color, t1.PlayerName));
             }
+            CalculateColorIndices();
         }
 
         foreach(Text t in outline)
             t.text = outlineString;
         mainText.text = mainString;
+    }
+
+    public void UpdateTextAlpha(float a)
+    {
+        Color c;
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            c = transform.GetChild(i).GetComponent<Text>().color;
+            c.a = a;
+            transform.GetChild(i).GetComponent<Text>().color = c;
+        }
+
+        //Now change the alpha value in the color tag to fade the text properly
+        if (colorStartIndices.Count == 0)
+            return;
+
+        string alphaHex = ((byte)(a * 255)).ToString("X2").ToLower();
+        char[] updatedString = mainString.ToCharArray();
+
+        foreach (int i in colorStartIndices)
+        {
+            updatedString[i + 7] = alphaHex[0];
+            updatedString[i + 8] = alphaHex[1];
+        }
+
+        mainText.text = new string(updatedString);
+    }
+
+    private void CalculateColorIndices()
+    {
+        for(int i = 0; i < mainString.Length; i++)
+        {
+            if (mainString[i] == '#')
+                colorStartIndices.Add(i);
+        }
     }
 
     private string StringToColorText(Color32 c, string text)
