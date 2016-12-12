@@ -192,7 +192,10 @@ public abstract class Tank : Entity {
         }
         else if(col.gameObject.tag == "Pickupable")
         {
-            Debug.Log(gameObject.name + " Picked up item with ID: " + col.GetComponent<PickupableItem>().itemID + "!");
+            Debug.Log(gameObject.name + " Picked up item with ID: " + col.GetComponent<PickupableItem>().item + "!");
+            DisposableText displayText = ((GameObject)Instantiate(Resources.Load("Disposable Text"), transform.position + new Vector3(1,0,0), Quaternion.identity)).GetComponent<DisposableText>();
+            displayText.text = "+" + col.GetComponent<PickupableItem>().quantity + " " +col.GetComponent<PickupableItem>().item.PluralText();
+
             Destroy(col.gameObject);
         }
     }

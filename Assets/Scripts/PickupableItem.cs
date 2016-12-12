@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 sealed public class PickupableItem : InteractableItem
 {
-    public int itemID;
+    public Equipment item;
+    public int quantity;
 
     protected override void Start()
     {
         base.Start();
-        itemID = Random.Range(0, 4);
-    }
+
+        Equipment[] equipmentList = (Equipment[])Enum.GetValues(typeof(Equipment));
+        item = equipmentList[UnityEngine.Random.Range(0,equipmentList.Length)];
+        quantity = UnityEngine.Random.Range(0, 100);
+    }          
 }

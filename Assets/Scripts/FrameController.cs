@@ -6,10 +6,18 @@
 public class FrameController : MonoBehaviour
 {
     private Transform healthBarIndicator;
+    private FloatingText nameText;
 
-    void Start()
+    void Awake()
     {
+        //Assign the healthbar and nameText variables
         healthBarIndicator = transform.Find("Health Bar/Indicator");
+        nameText = transform.Find("Name").GetComponent<FloatingText>();
+    }
+
+    public void SetName(string playerName, Color nameColor)
+    {
+        nameText.Initialise(playerName, nameColor, 50);
     }
 
     public void UpdateHealth(int maxHealth, int health, int damage)

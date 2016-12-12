@@ -109,7 +109,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 479886}
-  - component: {fileID: 114981208171812192}
+  - component: {fileID: 114989366835819514}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -235,7 +235,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 7, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4432682297240832}
@@ -731,7 +731,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4432682297240832}
-  - component: {fileID: 114045703472797108}
+  - component: {fileID: 114324657607640972}
   m_Layer: 0
   m_Name: Frame
   m_TagString: Untagged
@@ -1379,7 +1379,7 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
---- !u!114 &114045703472797108
+--- !u!114 &114324657607640972
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1401,7 +1401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8874992e3733dca46b402485128d3d43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114981208171812192
+--- !u!114 &114989366835819514
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1412,3 +1412,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e0b38c734538541b66fad2e3676e5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: Mikeywalsh

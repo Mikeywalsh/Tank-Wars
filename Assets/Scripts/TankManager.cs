@@ -1,18 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Used to manage the setup and enabling/disabling of frames and tank objects for players
+/// </summary>
 public class TankManager : MonoBehaviour {
 
-    private GameObject tank;
-    private GameObject frame;
+    public string playerName;
+
+    private Tank tank;
+    private FrameController frame;
     private float deathTime;
     private float SpawnTime;
     private bool dead;
 
     void Start()
     {
-        tank = transform.FindChild("Tank").gameObject;
-        frame = transform.FindChild("Frame").gameObject;
+        //Assign the tank and frame gameobjects
+        tank = transform.FindChild("Tank").GetComponent<Tank>();;
+        frame = transform.FindChild("Frame").GetComponent<FrameController>();
+
+        //Set the player name and color display
+        frame.SetName(playerName, tank.color);
 
         //StartSpawn();
     }
@@ -30,13 +39,13 @@ public class TankManager : MonoBehaviour {
 
     public void UpdateHealthBar(int maxHealth, int health, int damage)
     {
-        frame.GetComponent<FrameController>().UpdateHealth(maxHealth, health, damage);
+        frame.UpdateHealth(maxHealth, health, damage);
     }
 
     public void DestroyTank()
     {
-        tank.SetActive(false);
-        frame.SetActive(false);
+        tank.gameObject.SetActive(false);
+        frame.gameObject.SetActive(false);
         deathTime = Time.time;
         dead = true;
     }
@@ -44,7 +53,7 @@ public class TankManager : MonoBehaviour {
     private void Spawn()
     {
         //Enable this tank and set its location to the most optimal spawn location
-        tank.SetActive(true);
+        tank.gameObject.SetActive(true);
         tank.transform.position = LevelController.OptimalSpawnLocation();
 
         //Enable the tank frame but disable the healthbar, so only the name is displayed
@@ -56,7 +65,7 @@ public class TankManager : MonoBehaviour {
         tank.GetComponent<Tank>().Heal(tank.GetComponent<Tank>().MaxHealth);
         tank.GetComponent<Tank>().canFire = false;
         tank.tag = "Ignore Projectiles";
-        tank.layer = 2; //Ignore Raycast
+        tank.gameObject.layer = 2; //Ignore Raycast
 
         //Set the spawning flag and record the spawn time
         dead = false;
@@ -73,11 +82,11 @@ public class TankManager : MonoBehaviour {
         tank.GetComponent<Tank>().MakeOpaque();
         tank.GetComponent<Tank>().canFire = true;
         tank.gameObject.tag = "Tank";
-        tank.layer = 0; //Default
+        tank.gameObject.layer = 0; //Default
 
         //Enable the health bar and reset it to be full
         transform.Find("Frame/Health Bar").gameObject.SetActive(true);
-        frame.GetComponent<FrameController>().ResetHealth();
+        frame.ResetHealth();
         tank.GetComponent<Tank>().spawning = false;
     }
 }

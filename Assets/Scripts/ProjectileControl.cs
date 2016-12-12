@@ -39,8 +39,8 @@ sealed public class ProjectileControl : Entity {
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if(col.gameObject != owner)
-            DestroyEntity();
+        if (col.gameObject == owner || col.gameObject.tag == "Ignore Projectiles")
+            return;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
