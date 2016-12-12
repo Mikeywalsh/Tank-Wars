@@ -12,7 +12,7 @@ sealed public class PickupableItem : InteractableItem
         base.Start();
 
         Equipment[] equipmentList = (Equipment[])Enum.GetValues(typeof(Equipment));
-        item = equipmentList[UnityEngine.Random.Range(0,equipmentList.Length)];
+        item = equipmentList[UnityEngine.Random.Range(1,equipmentList.Length)];
         quantity = UnityEngine.Random.Range(item.PickupAmountMin(), item.PickupAmountMax() + 1);
     }          
 }
