@@ -69,7 +69,7 @@ public abstract class Tank : Entity {
 
             if (Vector2.Angle(transform.up, direction) > 160 || reversing)
             {
-                transform.up = Vector2.Lerp(transform.up, -direction, 0.1f);
+                transform.up = Vector2.Lerp(transform.up, -direction, 0.2f);
                 movementThisFrame -= ((Vector2)transform.up * speed * Time.deltaTime);
                 transform.Find("Left Tank Tread").GetComponent<Animator>().SetInteger("Direction", -1);
                 transform.Find("Right Tank Tread").GetComponent<Animator>().SetInteger("Direction", -1);
@@ -77,7 +77,7 @@ public abstract class Tank : Entity {
             }
             else
             {
-                transform.up = Vector2.Lerp(transform.up, direction, 0.1f);
+                transform.up = Vector2.Lerp(transform.up, direction, 0.2f);
                 movementThisFrame += ((Vector2)transform.up * speed * Time.deltaTime);
                 transform.Find("Left Tank Tread").GetComponent<Animator>().SetInteger("Direction", 1);
                 transform.Find("Right Tank Tread").GetComponent<Animator>().SetInteger("Direction", 1);
@@ -256,5 +256,10 @@ public abstract class Tank : Entity {
             onConveyor = false;
             conveyorDirection = new Vector2(0, 0);
         }
+    }
+
+    public string PlayerName
+    {
+        get { return manager.playerName; }
     }
 }

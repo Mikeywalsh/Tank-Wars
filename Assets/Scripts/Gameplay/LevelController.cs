@@ -18,6 +18,7 @@ public class LevelController : MonoBehaviour {
 
     private void Awake()
     {
+        Application.runInBackground = true;
         controller = this;
     }
 
