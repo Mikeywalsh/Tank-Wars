@@ -53,8 +53,8 @@ public class TankManager : MonoBehaviour {
     private void Spawn()
     {
         //Enable this tank and set its location to the most optimal spawn location
-        tank.gameObject.SetActive(true);
         tank.transform.position = LevelController.OptimalSpawnLocation();
+        tank.gameObject.SetActive(true);
 
         //Enable the tank frame but disable the healthbar, so only the name is displayed
         frame.gameObject.SetActive(true);

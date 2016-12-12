@@ -34,7 +34,7 @@ public abstract class Tank : Entity {
 
         //Create the equipment dictionary with starting values
         equipment = new Dictionary<Equipment, int>();
-        equipment[Equipment.Laser] = 1000;
+        equipment[Equipment.Laser] = 0;
         equipment[Equipment.Mine] = 0;
     }
 
@@ -103,14 +103,14 @@ public abstract class Tank : Entity {
             body.MovePosition(movementThisFrame);
         }
 
-        //If laser has no ammo left, stop firing
+        //If laser has no ammo left, or its taget has died, then stop firing
         if (equipment[Equipment.Laser] <= 0)
-            StopFiringLaser();
+            StopFiringLaser();        
 
         //If laser has a target, damage it
         if(laserTarget != null)
         {
-            if (laserTarget.GetComponent<Entity>().Health != 0)
+            if (laserTarget.GetComponent<Entity>().Health > 0)
                 laserTarget.GetComponent<Entity>().TakeDamage(1);
         }
     }
@@ -219,6 +219,19 @@ public abstract class Tank : Entity {
         }
     }
 
+    protected void OnTriggerStay2D(Collider2D col)
+    {
+        //Called only if the player finishes spawning on top of an item
+        if (col.gameObject.tag == "Pickupable")
+        {
+            if (!spawning)
+            {
+                AddEquipment(col.GetComponent<PickupableItem>().item, col.GetComponent<PickupableItem>().quantity);
+                Destroy(col.gameObject);
+            }
+        }
+    }
+
     protected void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name.Contains("Conveyor Belt"))
@@ -228,10 +241,11 @@ public abstract class Tank : Entity {
         }
         else if(col.gameObject.tag == "Pickupable")
         {
-            AddEquipment(col.GetComponent<PickupableItem>().item, col.GetComponent<PickupableItem>().quantity);
-            
-
-            Destroy(col.gameObject);
+            if (!spawning)
+            {
+                AddEquipment(col.GetComponent<PickupableItem>().item, col.GetComponent<PickupableItem>().quantity);
+                Destroy(col.gameObject);
+            }
         }
     }
 

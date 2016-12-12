@@ -58,7 +58,7 @@ public class AITank : Tank {
         {
             transform.Find("Tank Cannon").up = (Vector3)closestTarget.body.position - transform.Find("Tank Cannon").position;
 
-            //Only fire cannon if the tank has a clear shot on the target
+            //Only fire weapons if the tank has a clear shot on the target
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction);
 
             if(hit.collider != null && hit.collider.tag == "Tank" && fireCooldown <= 0 && aggressive)
@@ -68,7 +68,16 @@ public class AITank : Tank {
                 else
                     FireCannon();
             }
+            else if(currentLaser != null)
+            {
+                StopFiringLaser();
+            }
         }
+        else if (currentLaser != null)
+        {
+            StopFiringLaser();
+        }
+
         base.FixedUpdate();
     }
 }
