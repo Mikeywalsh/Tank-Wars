@@ -5,6 +5,7 @@ public abstract class Tank : Entity {
 
     public static List<Tank> activeTanks = new List<Tank>();
 
+    public bool controlledLocally;
     public Rigidbody2D body;
     public Color color;
     public float speed;
@@ -15,6 +16,7 @@ public abstract class Tank : Entity {
     public bool ignoreProjectiles;
 
     protected TankManager manager;
+    protected Dictionary<Equipment, int> equipment;
     protected bool onConveyor;
     protected bool moving;
     protected Vector2 direction;
@@ -25,9 +27,15 @@ public abstract class Tank : Entity {
 
     private void Awake()
     {
+        //Assign tank manager and tank parts
         manager = transform.parent.GetComponent<TankManager>();
         transform.FindChild("Tank Cannon").GetComponent<SpriteRenderer>().color = color;
         transform.FindChild("Tank Body").GetComponent<SpriteRenderer>().color = color;
+
+        //Create the equipment dictionary with starting values
+        equipment = new Dictionary<Equipment, int>();
+        equipment[Equipment.Laser] = 1000;
+        equipment[Equipment.Mine] = 0;
     }
 
     protected override void Start()
@@ -95,6 +103,10 @@ public abstract class Tank : Entity {
             body.MovePosition(movementThisFrame);
         }
 
+        //If laser has no ammo left, stop firing
+        if (equipment[Equipment.Laser] <= 0)
+            StopFiringLaser();
+
         //If laser has a target, damage it
         if(laserTarget != null)
         {
@@ -123,6 +135,12 @@ public abstract class Tank : Entity {
 
     protected void FireLaser()
     {
+        if (!canFire)
+            return;
+
+        if (equipment[Equipment.Laser] <= 0)
+            return;
+
         RaycastHit2D hit = Physics2D.Raycast(body.transform.position, transform.Find("Tank Cannon").up);
         if(hit.collider != null)
         {  
@@ -139,6 +157,8 @@ public abstract class Tank : Entity {
             else
                 laserTarget = hit.collider.gameObject;
         }
+        equipment[Equipment.Laser]--;
+
     }
 
     protected void StopFiringLaser()
@@ -148,6 +168,22 @@ public abstract class Tank : Entity {
         laserTarget = null;
     }
 
+    protected void AddEquipment(Equipment e, int amount)
+    {
+        //Change the amount of the specified equipment the player has
+        int amountAdded = Mathf.Clamp(equipment[e] + amount, 0, e.MaxAmount()) - equipment[e];
+        equipment[e] = Mathf.Clamp(equipment[e] + amount, 0, e.MaxAmount());
+
+        if (controlledLocally)
+        {
+            //Create a string describing how much was added
+            string display = "+" + amountAdded.ToString() + " " + e.AmmoName() + (amountAdded > 1 ? "s" : "") + (equipment[e] == e.MaxAmount() ? "(Max)" : "");
+
+            //Display the string next to the tank
+            GameObject displayText = Instantiate(Resources.Load("Disposable Text"), transform.position + new Vector3(1, 0, 0), Quaternion.identity) as GameObject;
+            displayText.GetComponent<DisposableText>().text = display;
+        }
+    }
 
     protected override void DestroyEntity()
     {
@@ -192,9 +228,8 @@ public abstract class Tank : Entity {
         }
         else if(col.gameObject.tag == "Pickupable")
         {
-            Debug.Log(gameObject.name + " Picked up item with ID: " + col.GetComponent<PickupableItem>().item + "!");
-            DisposableText displayText = ((GameObject)Instantiate(Resources.Load("Disposable Text"), transform.position + new Vector3(1,0,0), Quaternion.identity)).GetComponent<DisposableText>();
-            displayText.text = "+" + col.GetComponent<PickupableItem>().quantity + " " +col.GetComponent<PickupableItem>().item.PluralText();
+            AddEquipment(col.GetComponent<PickupableItem>().item, col.GetComponent<PickupableItem>().quantity);
+            
 
             Destroy(col.gameObject);
         }

@@ -63,7 +63,10 @@ public class AITank : Tank {
 
             if(hit.collider != null && hit.collider.tag == "Tank" && fireCooldown <= 0 && aggressive)
             {
-                FireCannon();
+                if (equipment[Equipment.Laser] > 0)
+                    FireLaser();
+                else
+                    FireCannon();
             }
         }
         base.FixedUpdate();
