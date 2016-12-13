@@ -17,7 +17,19 @@ public class UIText : MonoBehaviour
     /// Second Tank object that can be used to have its name displayed in color
     /// </summary>
     public Tank t2;
+    /// <summary>
+    /// Optional field which delays the display of the text
+    /// </summary>
+    public float DisplayDelay;
 
+    /// <summary>
+    /// The time this instance was created
+    /// </summary>
+    private float CreationTime;
+    /// <summary>
+    /// Flag signalling if the text has been displayed yet
+    /// </summary>
+    private bool TextDisplayed;
     /// <summary>
     /// The text to display on the main text object, same as outlineText if no color is used
     /// </summary>
@@ -35,6 +47,8 @@ public class UIText : MonoBehaviour
 
     private void Start()
     {
+        CreationTime = Time.time;
+        TextDisplayed = false;
         outline = new List<Text>();
         colorStartIndices = new List<int>();
 
@@ -64,9 +78,20 @@ public class UIText : MonoBehaviour
             CalculateColorIndices();
         }
 
-        foreach(Text t in outline)
-            t.text = outlineString;
-        mainText.text = mainString;
+        //If there is no delay on the displaying of the text, then display it immediately
+        if (DisplayDelay > 0)
+            return;
+
+        ShowText();
+    }
+
+    void Update()
+    {
+        if(DisplayDelay > 0 && Time.time - CreationTime > DisplayDelay && !TextDisplayed)
+        {
+            TextDisplayed = true;
+            ShowText();
+        }
     }
 
     public void UpdateTextAlpha(float a)
@@ -94,6 +119,25 @@ public class UIText : MonoBehaviour
         }
 
         mainText.text = new string(updatedString);
+    }
+
+    public void UpdateAnchoredPosition(float y)
+    {
+        GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().anchoredPosition.x, y);
+    }
+
+    public void ShowText()
+    {
+        foreach (Text t in outline)
+            t.text = outlineString;
+        mainText.text = mainString;
+    }
+
+    public void HideText()
+    {
+        foreach (Text t in outline)
+            t.text = outlineString;
+        mainText.text = mainString;
     }
 
     private void CalculateColorIndices()

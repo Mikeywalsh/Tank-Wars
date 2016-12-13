@@ -48,6 +48,36 @@ static class EquipmentMethods
         }
     }
 
+    public static int MinDamage(this Equipment e)
+    {
+        switch (e)
+        {
+            case (Equipment.Cannon):
+                return 15;
+            case (Equipment.Laser):
+                return 1;
+            case (Equipment.Mine):
+                return 30;
+            default:
+                throw new Exception("Unknown Equipment type");
+        }
+    }
+
+    public static int MaxDamage(this Equipment e)
+    {
+        switch (e)
+        {
+            case (Equipment.Cannon):
+                return 25;
+            case (Equipment.Laser):
+                return 2;
+            case (Equipment.Mine):
+                return 50;
+            default:
+                throw new Exception("Unknown Equipment type");
+        }
+    }
+
     public static int MaxAmount(this Equipment e)
     {
         switch (e)
@@ -61,17 +91,17 @@ static class EquipmentMethods
         }
     }
 
-    public static string KillString(this Equipment e, bool suicide, bool environmental, string p1, string p2)
+    public static string KillString(this Equipment e, bool suicide, bool environmental)
     {
         switch (e)
         {
             case (Equipment.Cannon):
                 if (suicide)
-                    return new string[] { "{0} Shot {1}", "{1} was blew up by {0}'s Cannon" }[UnityEngine.Random.Range(0, 2)];
-                else
                     return "{0} shot themself, whoops";
+                else
+                    return new string[] { "{0} Shot {1}", "{1} recieved {0}'s Cannon" }[UnityEngine.Random.Range(0, 2)];
             case (Equipment.Laser):
-                return new string[] { "{0} Lasered {1}", "{1} was fried by {2}'s Laser" }[UnityEngine.Random.Range(0, 2)];
+                return new string[] { "{0} Lasered {1}", "{1} was fried by {0}'s Laser" }[UnityEngine.Random.Range(0, 2)];
             case (Equipment.Mine):
                 if (suicide)
                     return "{0} was blown up by their own mine, whoops";

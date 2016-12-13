@@ -111,7 +111,7 @@ public abstract class Tank : Entity {
         if(laserTarget != null)
         {
             if (laserTarget.GetComponent<Entity>().Health > 0)
-                laserTarget.GetComponent<Entity>().TakeDamage(1);
+                laserTarget.GetComponent<Entity>().TakeDamage(new DamageContainer(this, Equipment.Laser));
         }
     }
 

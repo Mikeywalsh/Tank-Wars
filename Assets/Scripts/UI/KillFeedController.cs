@@ -10,52 +10,95 @@ public class KillFeedController : MonoBehaviour {
 
     public static KillFeedController controller;
 
+    public float addWaitTime;
     public float startFadeTime;
     public float fadeDuration;
 
     private bool startedFade;
+    private float lastAddedTime;
+    private List<KillFeedQueueContainer> queuedKills;
     private List<KillFeedContainer> displayedKills;
 
 	void Start () {
+        queuedKills = new List<KillFeedQueueContainer>();
         displayedKills = new List<KillFeedContainer>();
+
         controller = this;
-        Add("{0} IS THE KING", GameObject.Find("Player").transform.FindChild("Tank").GetComponent<Tank>());
-        Add("{0} SUCKS", GameObject.Find("Simple AI Player").transform.FindChild("Tank").GetComponent<Tank>());
-        Add("{0} IS THE BEST", GameObject.Find("Player").transform.FindChild("Tank").GetComponent<Tank>());
+        //AddToQueue("{0} IS THE KING", GameObject.Find("Player").transform.FindChild("Tank").GetComponent<Tank>());
+        //AddToQueue("{0} SUCKS", GameObject.Find("Simple AI Player").transform.FindChild("Tank").GetComponent<Tank>());
+        //AddToQueue("{0} IS THE BEST", GameObject.Find("Player").transform.FindChild("Tank").GetComponent<Tank>());
     }
 	
 	void Update () {
-		foreach(KillFeedContainer c in displayedKills)
+        if(Time.time - lastAddedTime > addWaitTime)
         {
-            c.ActiveTime += Time.deltaTime;
-
-            if(c.ActiveTime >= startFadeTime && !c.StartedFade)
+            if (QueuedKills.Count > 0)
             {
-                iTween.ValueTo(c.TextObject, iTween.Hash("from", 1, "to", 0, "time", fadeDuration, "onupdate", "UpdateTextAlpha"));
-                c.StartedFade = true;
+                Add(QueuedKills[0]);
+                QueuedKills.RemoveAt(0);
+                lastAddedTime = Time.time;
+            }
+        }
+
+		for(int i = 0; i < DisplayedKills.Count; i++)
+        {
+            DisplayedKills[i].ActiveTime += Time.deltaTime;
+
+            if(DisplayedKills[i].ActiveTime >= startFadeTime && !DisplayedKills[i].StartedFade)
+            {
+                iTween.ValueTo(DisplayedKills[i].TextObject, iTween.Hash("from", 1, "to", 0, "time", fadeDuration, "onupdate", "UpdateTextAlpha"));
+                DisplayedKills[i].StartedFade = true;
             }
 
-            if (c.ActiveTime >= startFadeTime + fadeDuration)
+            if (DisplayedKills[i].ActiveTime >= startFadeTime + fadeDuration)
             {
-                Destroy(c.TextObject);
-                //displayedKills.Remove(c);
+                Destroy(DisplayedKills[i].TextObject);
+                displayedKills.RemoveAt(0);
             }
         }
 	}
 
-    public static void Add(string killText, Tank t)
+    public static void AddToQueue(string killText, Tank t)
+    {
+        QueuedKills.Add(new KillFeedQueueContainer(killText, t));
+    }
+
+    public static void AddToQueue(string killText, Tank t1, Tank t2)
+    {
+        QueuedKills.Add(new KillFeedQueueContainer(killText, t1, t2));
+    }
+
+    public static void Add(KillFeedQueueContainer nextKill)
     {
         GameObject u = Instantiate(Resources.Load("Color UI Text"), controller.transform) as GameObject;
         Vector2 textPosition = u.GetComponent<RectTransform>().anchoredPosition;
-        textPosition -= new Vector2(0, 30 * controller.displayedKills.Count);
 
+        //Move all existing killcam text objects out of the way when spawning a new one
+        for(int i = 0; i < DisplayedKills.Count; i++)
+        {
+            float yPos = DisplayedKills[i].TextObject.GetComponent<RectTransform>().anchoredPosition.y;
+            iTween.ValueTo(DisplayedKills[i].TextObject, iTween.Hash("from", yPos, "to", yPos - 30, "time", .2f, "onupdate", "UpdateAnchoredPosition"));
+        }
+
+        //Populate the created text object with the required information
         u.GetComponent<RectTransform>().anchoredPosition = textPosition;
-        u.GetComponent<UIText>().t1 = t;
-        u.GetComponent<UIText>().DisplayText = killText;
-        controller.displayedKills.Add(new KillFeedContainer(0, u));
+        u.GetComponent<UIText>().t1 = nextKill.Tank1;
+        if(nextKill.Tank2 != null)
+            u.GetComponent<UIText>().t2 = nextKill.Tank2;
+        u.GetComponent<UIText>().DisplayText = nextKill.KillText;
+        u.GetComponent<UIText>().DisplayDelay = .2f;
+        DisplayedKills.Add(new KillFeedContainer(0, u));
     }
 
+    private static List<KillFeedContainer> DisplayedKills
+    {
+        get { return controller.displayedKills; }
+    }
 
+    private static List<KillFeedQueueContainer> QueuedKills
+    {
+        get { return controller.queuedKills; }
+    }
 
 }
 
@@ -73,5 +116,29 @@ public class KillFeedContainer
         ActiveTime = activeTime;
         TextObject = textObject;
         StartedFade = false;
+    }
+}
+
+/// <summary>
+/// Struct used to contain information about an element queued to be displayed in the kill feed
+/// </summary>
+public struct KillFeedQueueContainer
+{
+    public string KillText;
+    public Tank Tank1;
+    public Tank Tank2;
+
+    public KillFeedQueueContainer(string killText, Tank t1)
+    {
+        KillText = killText;
+        Tank1 = t1;
+        Tank2 = null;
+    }
+
+    public KillFeedQueueContainer(string killText, Tank t1, Tank t2)
+    {
+        KillText = killText;
+        Tank1 = t1;
+        Tank2 = t2;
     }
 }

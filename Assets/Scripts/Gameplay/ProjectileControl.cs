@@ -45,14 +45,14 @@ sealed public class ProjectileControl : Entity {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject != owner)
+        if (col.gameObject != owner || bounceCount > 0)
         {
             if (col.gameObject.tag == "Ignore Projectiles")
                 return;
 
             if (col.gameObject.GetComponent<Entity>() != null)
             {
-                col.GetComponent<Entity>().TakeDamage(20);
+                col.GetComponent<Entity>().TakeDamage(new DamageContainer(owner.GetComponent<Tank>(), Equipment.Cannon));
             }
             else if(col.gameObject.tag == "Wall")
             {
@@ -65,7 +65,6 @@ sealed public class ProjectileControl : Entity {
                 {
                     lastWallHitNormal = wallHit.normal;
                     transform.up = Quaternion.AngleAxis(180, wallHit.normal) * transform.up * -1;
-                    owner = null;
                     bounceCount++;
                     return;
                 }

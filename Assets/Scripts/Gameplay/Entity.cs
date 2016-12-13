@@ -14,24 +14,38 @@ public class Entity : MonoBehaviour {
 
     protected virtual void FixedUpdate()
     {
+        //Debug.Log(((Tank)this).PlayerName + (GameObject.Find("Player").transform.FindChild("Tank").GetComponent<Tank>() == ((Tank)this)).ToString());
         if (transform.position.x < mapStart.x || transform.position.y < mapStart.y || transform.position.x > mapEnd.x || transform.position.y > mapEnd.y)
             DestroyEntity();
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(DamageContainer d)
     {
         //Change health of entity
-        health = Mathf.Clamp(health - amount, 0, maxHealth);
+        health = Mathf.Clamp(health - d.DamageAmount, 0, maxHealth);
 
         //Update health bar if entity is tank
         if (this is Tank)
         {
             //Debug.Log();
-            transform.parent.GetComponent<TankManager>().UpdateHealthBar(maxHealth, health, amount);
+            transform.parent.GetComponent<TankManager>().UpdateHealthBar(maxHealth, health, d.DamageAmount);
         }
 
         if (health == 0)
+        {
+            //If a tank is being destroyed, update the killfeed
+            if(this is Tank)
+            {
+                //Debug.Log(d.Source.PlayerName);
+                if(d.Source == (Tank)this || d.Source == null)
+                    KillFeedController.AddToQueue(d.Weapon.KillString(d.Source == (Tank)this, d.Source == null), (Tank)this);
+                else
+                    KillFeedController.AddToQueue(d.Weapon.KillString(d.Source == this, d.Source == null), d.Source, (Tank)this);
+            }
+
+            //Now destroy the entity
             DestroyEntity();
+        }
     }
 
     public void Heal(int amount)
