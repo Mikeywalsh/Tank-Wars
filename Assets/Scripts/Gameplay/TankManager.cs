@@ -17,8 +17,8 @@ public class TankManager : MonoBehaviour {
     void Start()
     {
         //Assign the tank and frame gameobjects
-        tank = transform.FindChild("Tank").GetComponent<Tank>();;
-        frame = transform.FindChild("Frame").GetComponent<FrameController>();
+        tank = transform.Find("Tank").GetComponent<Tank>();;
+        frame = transform.Find("Frame").GetComponent<FrameController>();
 
         //Set the player name and color display
         frame.SetName(playerName, tank.color);

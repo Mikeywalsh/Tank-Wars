@@ -29,8 +29,8 @@ public abstract class Tank : Entity {
     {
         //Assign tank manager and tank parts
         manager = transform.parent.GetComponent<TankManager>();
-        transform.FindChild("Tank Cannon").GetComponent<SpriteRenderer>().color = color;
-        transform.FindChild("Tank Body").GetComponent<SpriteRenderer>().color = color;
+        transform.Find("Tank Cannon").GetComponent<SpriteRenderer>().color = color;
+        transform.Find("Tank Body").GetComponent<SpriteRenderer>().color = color;
 
         //Create the equipment dictionary with starting values
         equipment = new Dictionary<Equipment, int>();
